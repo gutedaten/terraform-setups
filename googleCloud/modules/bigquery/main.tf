@@ -159,14 +159,12 @@ resource "google_bigquery_table" "events" {
     field = "eventDate"
   }
 
-  clustering = {
-    fields = [
+  clustering = [
       "eventName",
       "userPseudoId",
       "sessionId",
       "hostname",
     ]
-  }
 
   description = "A table to store the event information. The structures are user, device, session and events, partitioned by event creation date and clustered by userPseudoId, sessionId, eventName and hostname"
 }
@@ -189,9 +187,7 @@ resource "google_bigquery_table" "logging" {
     expiration_ms = 7 * 24 * 60 * 60 * 1000   # 7 Tage
   }
 
-  clustering = {
-    fields = ["eventName"]
-  }
+  clustering = ["eventName"]
 
   description = "A table to store the untouched event information."
 }

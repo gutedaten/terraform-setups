@@ -6,7 +6,7 @@ resource "google_firestore_database" "default" {
   name        = "(default)"
   project     = var.project_id
   location_id = "europe-west3"
-  type        = "NATIVE"
+  type        = "FIRESTORE_NATIVE"
 }
 
 // TTL-Rule: Delete device documents automatically after expireAt field
