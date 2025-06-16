@@ -14,6 +14,39 @@ terraform {
   }
 }
 
+# -------------------------------
+# APIs aktivieren
+# -------------------------------
+resource "google_project_service" "iam_api" {
+  project            = var.project_id
+  service            = "iam.googleapis.com"
+  disable_on_destroy = false
+}
+
+resource "google_project_service" "firebase_api" {
+  project            = var.project_id
+  service            = "firebase.googleapis.com"
+  disable_on_destroy = false
+  depends_on         = [google_project_service.iam_api]
+}
+
+resource "google_project_service" "firestore_api" {
+  project            = var.project_id
+  service            = "firestore.googleapis.com"
+  disable_on_destroy = false
+  depends_on         = [google_project_service.firebase_api]
+}
+
+resource "google_project_service" "bigquery_api" {
+  project            = var.project_id
+  service            = "bigquery.googleapis.com"
+  disable_on_destroy = false
+  depends_on         = [google_project_service.iam_api]
+}
+
+# -------------------------------
+# Module-Aufrufe
+# -------------------------------
 provider "google" {
   project     = var.project_id
   region      = "europe-west3"
