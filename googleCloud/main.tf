@@ -21,12 +21,22 @@ resource "google_project_service" "crm_api" {
   project            = var.project_id
   service            = "cloudresourcemanager.googleapis.com"
   disable_on_destroy = false
+
+  timeouts {
+    create = "30m"
+    update = "40m"
+  }
 }
 
 resource "google_project_service" "iam_api" {
   project            = var.project_id
   service            = "iam.googleapis.com"
   disable_on_destroy = false
+
+  timeouts {
+    create = "30m"
+    update = "40m"
+  }
 }
 
 resource "google_project_service" "firebase_api" {
@@ -34,6 +44,11 @@ resource "google_project_service" "firebase_api" {
   service            = "firebase.googleapis.com"
   disable_on_destroy = false
   depends_on         = [google_project_service.iam_api]
+
+  timeouts {
+    create = "30m"
+    update = "40m"
+  }
 }
 
 resource "google_project_service" "firestore_api" {
@@ -41,6 +56,11 @@ resource "google_project_service" "firestore_api" {
   service            = "firestore.googleapis.com"
   disable_on_destroy = false
   depends_on         = [google_project_service.firebase_api]
+
+  timeouts {
+    create = "30m"
+    update = "40m"
+  }
 }
 
 resource "google_project_service" "bigquery_api" {
@@ -48,6 +68,11 @@ resource "google_project_service" "bigquery_api" {
   service            = "bigquery.googleapis.com"
   disable_on_destroy = false
   depends_on         = [google_project_service.iam_api]
+
+  timeouts {
+    create = "30m"
+    update = "40m"
+  }
 }
 
 # -------------------------------
