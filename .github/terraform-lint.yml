@@ -1,6 +1,8 @@
 name: Terraform Lint & Validate
 on:
   push:
+    branches:
+      - main
     paths:
       - "**/*.tf"
       - ".github/workflows/terraform-lint.yml"
