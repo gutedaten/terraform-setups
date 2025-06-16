@@ -1,7 +1,7 @@
 terraform {
   backend "gcs" {
     bucket = "datadash360-terraform-state"
-    prefix = "state/${var.project_id}"
+    prefix = "state"
   }
 }
 
