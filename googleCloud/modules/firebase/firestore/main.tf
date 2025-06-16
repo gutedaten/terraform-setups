@@ -17,7 +17,5 @@ resource "google_firestore_field" "device_expireAt" {
   database    = google_firestore_database.default.name
   collection  = "device"
   field       = "expireAt"
-  ttl_config {
-    state = "ENABLED"
-  }
+  ttl_config {}
 }

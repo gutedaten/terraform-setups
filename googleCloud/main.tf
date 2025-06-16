@@ -3,6 +3,15 @@ terraform {
     bucket = "datadash360-terraform-state"
     prefix = "state"
   }
+
+   required_providers {
+    google = {
+      source  = "hashicorp/google"
+    }
+    google-beta = {
+      source  = "hashicorp/google-beta"
+    }
+  }
 }
 
 provider "google" {
